@@ -4,6 +4,10 @@ class Statement {
   constructor(query, field) {
     this.query = query;
     this.field = field;
+    this.limit = query.limit === undefined ? 10 : parseInt(query.limit);
+    this.page =
+      query.page === undefined ? 0 : (parseInt(query.page) - 1) * this.limit;
+    this.pageDisplay = parseInt(query.page) || 1;
   }
   search() {
     if (this.query.query !== undefined) {

@@ -12,13 +12,20 @@ class Users {
       let search = statement.search();
       let sort = statement.eagerSorting();
 
-      let user = await Model[schema].findAll({
+      let user = await Model[schema].findAndCountAll({
+        offset: statement.page,
+        limit: statement.limit,
         order: sort,
         where: {
           ...search,
         },
       });
-      return res.sendDataList(200, "pesan", user);
+      let result = {
+        page: statement.pageDisplay,
+        limit: statement.limit,
+        ...user,
+      };
+      return res.sendDataList(200, "pesan", result);
     } catch (err) {
       return res.sendData(500, err.message);
     }
