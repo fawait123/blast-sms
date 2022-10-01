@@ -3,6 +3,7 @@ const auth = require("../../controllers/public/auth");
 const Common = require("../../helpers/common");
 const moment = require("moment");
 const Model = require("../../models");
+const users = require("../../controllers/admin/users");
 
 router.use("/", async (req, res, next) => {
   try {
@@ -53,5 +54,7 @@ router.use("/", async (req, res, next) => {
 router.get("/", async (req, res) => {
   return res.sendData(200, "admin api");
 });
+
+router.get("/users", users.get);
 
 module.exports = router;
