@@ -4,13 +4,13 @@ const loggingOption = {
   logging: (logStr, execTime, options) => {
     let color;
     if (options.type === "SELECT") {
-      color = colors.blue.bold(logStr);
+      color = colors.green(colors.italic(logStr));
     }
     if (options.type === "UPDATE") {
-      color = colors.yellow.bold(logStr);
+      color = colors.yellow(colors.italic(logStr));
     }
     if (options.type === "INSERT") {
-      color = colors.green.bold(logStr);
+      color = colors.yellow(colors.italic(logStr));
     }
     if (color) {
       console.log(colors.magenta.bold(`[${execTime} ms]`), color);
