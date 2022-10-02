@@ -56,5 +56,9 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/users", users.get);
+router.post("/users", users.post);
+router.put("/users", users.put);
+router.delete("/users", users.delete);
+router.delete("/users/permanent", users.permanent);
 
 module.exports = router;

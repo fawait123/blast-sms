@@ -1,5 +1,5 @@
 "use strict";
-const { Model } = require("sequelize");
+const { Model, Op } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class users extends Model {
     /**
@@ -20,6 +20,13 @@ module.exports = (sequelize, DataTypes) => {
       deletedAt: DataTypes.DATEONLY,
     },
     {
+      defaultScope: {
+        where: {
+          deletedAt: {
+            [Op.is]: null,
+          },
+        },
+      },
       sequelize,
       modelName: "users",
     }
